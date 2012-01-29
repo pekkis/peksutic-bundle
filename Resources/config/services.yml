@@ -1,0 +1,17 @@
+parameters:
+    pekkis_peksutic.asset_manager_class: Assetic\AssetManager
+    pekkis_peksutic.assetizer_class: Pekkis\PeksuticBundle\Service\AssetizerService
+
+services:
+    
+    pekkis_peksutic.twig.extension:
+        class: Pekkis\PeksuticBundle\Twig\Extension\PeksuticExtension
+        tags:
+            -  { name: twig.extension }
+    
+    pekkis_peksutic.asset_manager:
+        class: %pekkis_peksutic.asset_manager_class%
+    
+    pekkis_peksutic.service.assetizer:
+        class: %pekkis_peksutic.assetizer_class%
+        arguments: [@pekkis_peksutic.asset_manager, @assetic.filter_manager, "%kernel.root_dir%/../web"]

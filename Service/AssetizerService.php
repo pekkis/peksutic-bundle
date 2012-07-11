@@ -205,17 +205,15 @@ class AssetizerService
         
         $f = $this->getAssetFactory();
         
-        foreach ($this->getCollections() as $coll) {
+        foreach ($this->getCollections() as $key => $coll) {
 
-            var_dump($coll);
-            
-            $woptions[$coll['options']['name']] = $coll['write'];
+            $woptions[$coll['options']['name'] . '_' . $key] = $coll['write'];
             
             $asset = $f->createAsset($coll['inputs'], $coll['filters'], $coll['options']);
             //if($coll['cache']) {
             //    $asset = new \Assetic\Asset\AssetCache($asset, $this->getAssetCache());                     
             // }
-            $this->getAssetManager()->set($coll['options']['name'], $asset);
+            $this->getAssetManager()->set($coll['options']['name'] . '_' . $key, $asset);
         }
         
         // Dumbsta

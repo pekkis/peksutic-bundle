@@ -72,18 +72,18 @@ class DumpCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         
-        \Zend_Debug::dump($this->assetizer->getCollections());
-        
-        
-        $output->writeln('Xooxer');
-        
-        
-        $this->assetizer->dumpAssets();
-        
-        
+
+
+        do {
+            $this->assetizer->dumpAssets();
+            $output->writeln('Xooxer');
+
+            sleep(1);
+
+        } while (true);
+
         return;
-        
-        
+
         
         
         
